@@ -1,0 +1,254 @@
+===============================Shell Scripting==================
+what is shell scripting ?
+
+Shell scripting is set of multiple mathmetical and file operations.
+
+ex:- 	$ mkdir folder<--- step 1
+	$ cd folder<--- step 2
+	$ cd important<--- step 3
+
+by using a shell csript we can all excute command on a single enter.
+
+ex:-  ./mycript
+
+Test 1:--
+
+# vi /myscript.sh
+
+mycode 
+#!/bin/bash
+mkdir folder
+cd folder
+mkdir important
+
+:wq! <--save
+
+# chmod 777 myscript.sh  <--full permission
+
+for excution:-
+  
+# ./myscript.sh
+
+==================================================================
+Operation for print the text on the terminal (echo)
+------------------------------------------------------------------
+1)crete a file
+touch hello.sh
+
+2)edit it
+vi hello.sh
+
+mycode:--
+
+#!/bin/bash
+echo "hi this is bishwajeet karn"
+
+3) give the permision
+# chmod 777 hello.sh
+
+4) for excution
+#./hello.sh
+
+=======================================================================
+Variable (a=10),comments(#abc-nor readable line),input , output
+----------------------------------------------------------------------
+mycode:-
+
+#!/bin/bash
+#  non readable line
+clear <---clear the screen
+# after clear the screen
+
+a=90 <----a variable intisialize 90
+
+a = 90 <---command as conditional type a is equal or not 90
+
+echo "welcome to bishwajeet"
+
+# show the value of a
+
+echo "value of a=$a"
+
+#after modification of value of a
+
+a="bishwajeet"
+
+echo "after the modificatio of a =$a"
+
+# Practical 2nd
+
+echo "enter your name:"
+
+read name
+
+echo "welcome $name"
+
+# read command use as a print and read value also
+
+read -p "naam dalo apna: " modi
+
+echo "value of modi= $modi "
+
+=========================================================================
+Arithmetical operations
+----------------------------------------------------------------------
+1) add ----> + ----->2+3=5
+2) sub-----> - ----->5-2=3
+3) mul ----> * ----->2*2=4
+4) div ----> / ----->2/2=0
+5) modu----> % ----->2%4=0
+
+==========================================================================
+
+#!/bin/bash
+x=5   <----value of x is 5 
+y=5   <----value of y is 5
+add=$(($x + $y))   <-------(( means is syntex error but for ignore 
+                              but we can use $((
+echo "the value of add=$add"  <------SHOW THE VALUE OF ADD
+
+==========================================================================
+#!/bin/bash
+read -p "for add enter the value a and b:" a b
+c=$(($a + $b))
+echo "a + b = $c"
+read -p "for sub enter the value a and b:" a b
+c=$(($a - $b))
+echo "a - b = $c"
+read -p "for mul enter the value a and b:" a b
+c=$(($a * $b))
+echo "a * b = $c"
+read -p "for div enter the value a and b:" a b
+c=$(($a / $b))
+echo "a / b = $c"
+
+===========================================================================
+ifelse conditional opretor
+syntex
+if [condition];
+then
+	#code
+ 	#code
+fi
+condition operations
+-eq <------------- equal to
+example- 10 = 10
+10 -eq 10
+-ne <-------------not qual to
+example-20 != 10
+20 -ne 10
+-gt <-------------greater than
+example- 10 > 5
+10 -gt 5
+-lt <-------------less than
+example- 10 < 5
+10 -lt 5
+-ge <-------------greater than or equal to
+example- 10 >= 10
+10>=9
+10 -ge 10
+10 -ge 5
+-le <-------------less than or equal to
+============================================================================
+#!/bin/bash
+clear
+read -p "enter a no:" k
+if [ 10 -gt $k];
+then
+echo "$k is less then 10"
+fi
+============================================================================
+#!/bin/bash
+clear
+read -p "enter the value of a and b:" o p
+if [ $o -eq $p ];
+then
+echo "value of $o or $p is equal"
+fi
+if [ $o -ne $p ];
+then
+echo "value of $o or $p is not equal"
+fi
+if [ $o -gt $p ];
+then
+echo "$o is greater then $p"
+fi
+if [ $o -lt $p ];
+then
+echo "$o is value less then $p"
+fi
+if [ $o -ge $p ];
+then
+echo "$o is greater and equal $p"
+fi
+if [ $o -le $p ];
+then
+echo "$o is less than or equal $p"
+fi
+==============================================================================
+syntex
+if [cond];
+then
+//code
+//code
+else
+//code
+//code
+fi 
+example:=========================
+#!/bin/bash
+clear
+read -p "enter a no:" k
+if [ 10 -lt $k];
+then
+echo "$k is less then 10"
+else
+echo "$k is greter then 10"
+fi
+============================================================================
+Nested ifelse
+syntex
+if [cond];
+then
+//code
+//code
+elif [code];
+then
+//code
+//code
+elif [cond];
+then
+//code
+//code
+else
+//code
+//code
+fi
+operator:================================
+or[-o] 		and[-a]		not[!]
+0+0=0		0*0=0		1 then 0
+0 -o 0 =0	0 -a 0 =0	1 ! 0
+1+0=1		1*0=0		0 then 1
+1 -o 0 =1	1 -a 0 =0	0 ! 1
+0+1=1		0*1=0	
+0 -o 1 =1	0 -a 1 =0
+1+1=1		1*1=1
+1 -o 1 =1	1 -a 1 =1
+++++++++++test time+++++++++++++++++++
+if [10 -eq 05 -o 06 -eq 20]; <----f
+if [10 -eq 10 -o 34 -eq 20]; <----t
+if [10 -eq 81 -o 20 -eq 20]; <----t
+if [10 -eq 10 -o 20 -eq 20]; <----t
+if [10 -eq 05 -a 06 -eq 20]; <----f
+if [10 -eq 10 -a 34 -eq 20]; <----f
+if [10 -eq 81 -a 20 -eq 20]; <----f
+if [10 -eq 10 -a 20 -eq 20]; <----t
+^^^^^^Test time^^^^^^^^^^^^^^^^^^^^^^
+if [10 -ne 05 -o 06 -ne 20 -a 06 -eq 20]; <----1+1*0=f
+if [10 -eq 10 -o 34 -eq 20 -a 06 -ne 20]; <----1+0*1=t
+if [10 -lt 81 -o 20 -ge 20 -a 06 -gt 20]; <----1+1*0=t
+if [10 -gt 10 -o 20 -le 20 -a 06 -lt 20]; <----0+1*1=t
+if [10 -le 05 -a 06 -gt 20 -o 06 -ge 20]; <----1*0+0=t
+if [10 -ge 10 -a 34 -lt 20 -o 06 -le 20]; <----1*0+1=t
+if [10 -eq 81 -a 20 -ne 20 -o 06 -eq 20]; <----0*1+0=f
+if [10 -ne 10 -a 20 -eq 20 -o 06 -ne 20]; <----0*1+1=t
